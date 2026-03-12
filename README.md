@@ -10,6 +10,19 @@
 
 Traditional practice relies on long apprenticeships, with senior engineers transferring expertise to junior engineers through mentorship and problem solving. In contrast, LLM-based multi-agent systems instantiate scalable junior engineer agents that inherit workflows, perform specialized tasks, and coordinate under senior engineers' oversight. As these systems evolve toward self-planning and adaptive learning, fully agentic hierarchies where senior engineer agents direct junior engineer agents could transform engineering into a continuously improving, highly efficient practice.
 
+## Tools: Autoresearch Lab (experimental) William Embry
+
+This repo includes an experimental “Autoresearch Lab” under `tools/autoresearch-lab/`. It is a deterministic benchmark harness for iterating on MASSE and OpenSees modeling defaults in a repeatable loop:
+
+- run a fixed benchmark suite
+- score results vs baselines and enforce engineering gates
+- record a keep or discard decision plus a lightweight ledger
+
+Quick start (from repo root):
+
+```bash
+python tools/autoresearch-lab/run_all.py --tag exp1 --description "what changed" --mode auto
+
 ![Analogy of future human-AI collaborations](assets/analogy.png)
 
 ## MASSE Framework
