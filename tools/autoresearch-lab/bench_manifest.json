@@ -1,0 +1,185 @@
+{
+  "version": "0.1",
+  "description": "Gen 1 MASSE Autoresearch Lab benchmark manifest. Keep small and fast.",
+  "defaults": {
+    "units": "imperial",
+    "timeCaps": {
+      "perCaseSeconds": 180,
+      "suiteSeconds": 600
+    },
+    "solverCaps": {
+      "maxIterations": 50,
+      "maxRetries": 2
+    }
+  },
+  "benchmarks": [
+    {
+      "id": "B1_drift_pdelta_2d_moment_frame",
+      "name": "Drift + P-Delta stability (2D steel moment frame)",
+      "tcl": "benchmarks/B1_drift_pdelta.tcl",
+      "intent": [
+        "Validate lateral stiffness and drift behavior.",
+        "Exercise P-Delta settings and solver stability.",
+        "Provide a fast baseline for regression."
+      ],
+      "model": {
+        "dimension": "2D",
+        "system": "steel_moment_frame",
+        "stories": 3,
+        "bays": 3,
+        "storyHeight_ft": 12,
+        "bayWidth_ft": 30,
+        "pDelta": true,
+        "elements": {
+          "beamColumnType": "elasticBeamColumn",
+          "geomTransf": "PDelta"
+        },
+        "massModel": "lumped_floor_nodes"
+      },
+      "loadCases": [
+        {
+          "id": "LC1_gravity",
+          "type": "static_gravity",
+          "notes": "Apply gravity first, then hold for lateral case."
+        },
+        {
+          "id": "LC2_lateral_pushover",
+          "type": "static_pushover",
+          "control": {
+            "node": "roof",
+            "dof": "X",
+            "targetRoofDriftRatio": 0.02
+          },
+          "notes": "Monotonic pushover to a modest drift target for speed."
+        }
+      ],
+      "outputs": {
+        "metrics": [
+          "roof_drift_ratio",
+          "story_drift_ratios",
+          "base_shear_at_target",
+          "convergence_status",
+          "iterations_total",
+          "runtime_seconds"
+        ]
+      },
+      "acceptance": {
+        "type": "band_vs_reference",
+        "bands": {
+          "roof_drift_ratio": { "rel": 0.05 },
+          "base_shear_at_target": { "rel": 0.05 }
+        },
+        "hardRequirements": {
+          "mustConverge": true
+        }
+      }
+    },
+    {
+      "id": "B2_modal_periods_2d_frame",
+      "name": "Modal periods + participation (2D steel frame)",
+      "tcl": "benchmarks/B2_modal.tcl",
+      "intent": [
+        "Validate mass modeling defaults.",
+        "Validate eigen extraction stability.",
+        "Support damping-target heuristics."
+      ],
+      "model": {
+        "dimension": "2D",
+        "system": "steel_moment_frame",
+        "stories": 3,
+        "bays": 3,
+        "storyHeight_ft": 12,
+        "bayWidth_ft": 30,
+        "pDelta": false,
+        "elements": {
+          "beamColumnType": "elasticBeamColumn",
+          "geomTransf": "Linear"
+        },
+        "massModel": "lumped_floor_nodes"
+      },
+      "analysis": {
+        "type": "eigen",
+        "numModes": 3
+      },
+      "outputs": {
+        "metrics": [
+          "periods_T",
+          "participation_factors",
+          "eigen_ok",
+          "runtime_seconds"
+        ]
+      },
+      "acceptance": {
+        "type": "band_vs_reference",
+        "bands": {
+          "periods_T": { "rel": 0.03 }
+        },
+        "hardRequirements": {
+          "eigen_ok": true
+        }
+      }
+    },
+    {
+      "id": "B3R_diaphragm_rigid_torsion_3d",
+      "name": "Diaphragm torsion benchmark (3D, rigid diaphragm)",
+      "intent": [
+        "Fast rigid-diaphragm torsion response for regression.",
+        "Defines the rigid-diaphragm baseline used for default workflow tuning."
+      ],
+      "model": {
+        "dimension": "3D",
+        "system": "perimeter_frames_with_rigid_diaphragm",
+        "stories": 1,
+        "plan_ft": { "L": 120, "W": 80 },
+        "storyHeight_ft": 15
+      },
+      "outputs": {
+        "metrics": [
+          "drift_node11",
+          "drift_node12",
+          "drift_node13",
+          "rotation",
+          "converged",
+          "runtime_s"
+        ]
+      },
+      "acceptance": {
+        "type": "band_vs_reference",
+        "hardRequirements": { "mustConverge": true }
+      }
+    },
+    {
+      "id": "B3S_diaphragm_semirigid_membrane_3d",
+      "name": "Diaphragm torsion benchmark (3D, semi-rigid diaphragm membrane proxy)",
+      "intent": [
+        "Semi-rigid diaphragm torsion response using an explicit in-plane diaphragm model.",
+        "This is scored against its own baseline, not against rigid diaphragm."
+      ],
+      "model": {
+        "dimension": "3D",
+        "system": "perimeter_frames_with_semirigid_diaphragm",
+        "stories": 1,
+        "plan_ft": { "L": 120, "W": 80 },
+        "storyHeight_ft": 15,
+        "diaphragm": {
+          "representation": "in_plane_truss_mesh",
+          "knob": "diaphragm.semi_rigid.effectiveStiffnessFactor"
+        }
+      },
+      "outputs": {
+        "metrics": [
+          "drift_node11",
+          "drift_node12",
+          "drift_node13",
+          "rotation",
+          "converged",
+          "runtime_s"
+        ]
+      },
+      "acceptance": {
+        "type": "band_vs_reference",
+        "hardRequirements": { "mustConverge": true }
+      }
+    }
+  ]
+}

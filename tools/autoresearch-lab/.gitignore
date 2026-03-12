@@ -1,0 +1,14 @@
+# Local experiment outputs
+runs/
+results.tsv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
