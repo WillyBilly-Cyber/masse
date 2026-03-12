@@ -49,12 +49,12 @@ Use this to track progress. Keep it brutally literal.
 - [x] Diaphragm stiffness rules (rigid, semi-rigid, param sweep)
 - [x] Solver strategy tuning (test, algorithm, tolerances)
 
-## H) Promotion to Skill (only after MVP works)
-- [ ] Create skill folder: `~/.openclaw/skills/masse-autoresearch-lab/`
+## H) Promotion to Skills (only after MVP works)
+- [ ] Create skills folder: `skills/masse-autoresearch-lab/`
 - [ ] Add `SKILL.md` with clear commands and guardrails
 - [ ] Add scripts into `scripts/` (runner, scorer, ledger)
 - [ ] Validate it does not depend on unstable paths
-- [ ] Document how it interacts with existing `masse` and `masse-job-runner` skills
+- [ ] Document how it interacts with existing MASSE tooling (job runner, etc.)
 
 ## I) Done means
 - [x] One command runs suite, produces artifacts, and updates ledger
