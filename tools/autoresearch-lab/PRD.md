@@ -2,8 +2,6 @@
 
 **Owner:** William
 
-**Author:** Wilson
-
 **Date:** 2026-03-11
 
 ## 0) One-liner
