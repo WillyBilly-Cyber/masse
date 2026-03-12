@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "created": "2026-03-11T11:00:52-05:00",
+  "source_run": "B3R:20260311_110052_openseespy_b3fix_masterfix; B3S:20260311_115553_baseline_b3s_shell_k1",
+  "benchmarks": {
+    "B1_drift_pdelta_2d_moment_frame": {
+      "roof_drift": 1.456032803439142e-06,
+      "base_shear": -3.9999999999999996
+    },
+    "B2_modal_periods_2d_frame": {
+      "periods": {
+        "T1": 0.14581333754528228,
+        "T2": 0.06883896895146635,
+        "T3": 0.04125042104834159
+      }
+    },
+    "B3R_diaphragm_rigid_torsion_3d": {
+      "drift_node11": 0.00018784078607450742,
+      "drift_node12": 0.00018784078607450742,
+      "drift_node13": 0.00012822383322107662,
+      "rotation": 7.452119106678851e-07
+    },
+    "B3S_diaphragm_semirigid_membrane_3d": {
+      "drift_node11": 0.00011614642779947958,
+      "drift_node12": 0.00040557014867865224,
+      "drift_node13": 7.545850223627956e-05,
+      "rotation": 4.126395580529659e-06
+    }
+  }
+}

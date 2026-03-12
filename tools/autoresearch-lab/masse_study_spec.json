@@ -1,0 +1,70 @@
+{
+  "version": "0.1",
+  "meta": {
+    "description": "MASSE Autoresearch Lab study spec"
+  },
+  "solver": {
+    "constraints": "Transformation",
+    "numberer": "Plain",
+    "system": "BandGeneral",
+    "test": {
+      "name": "NormDispIncr",
+      "tol": 1e-6,
+      "maxIter": 30
+    },
+    "algorithm": {
+      "name": "Newton"
+    },
+    "integrator": {
+      "defaultStatic": "LoadControl"
+    },
+    "analysis": {
+      "static": "Static"
+    }
+  },
+  "stability": {
+    "pDelta": {
+      "enabledByDefault": true,
+      "geomTransf2D": "PDelta",
+      "geomTransf3D": "PDelta"
+    }
+  },
+  "mass": {
+    "model": "lumped_floor_nodes"
+  },
+  "damping": {
+    "model": "rayleigh",
+    "zeta": 0.02,
+    "rayleigh": {
+      "targetModes": [1, 3]
+    }
+  },
+  "diaphragm": {
+    "defaultMode": "rigid",
+    "rigid": {
+      "method": "rigid_constraint"
+    },
+    "semi_rigid": {
+      "method": "membrane_shell",
+      "effectiveStiffnessFactor": 1.0
+    }
+  },
+  "elements": {
+    "beamColumnType": "elasticBeamColumn",
+    "plasticity": {
+      "enabled": false
+    }
+  },
+  "output": {
+    "recorders": {
+      "drifts": true,
+      "reactions": true,
+      "elementForces": false
+    }
+  },
+  "caps": {
+    "perCaseSeconds": 180,
+    "suiteSeconds": 600,
+    "maxRetries": 2
+  }
+}

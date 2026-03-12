@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MASSE Autoresearch Lab Case Outputs",
+  "type": "object",
+  "required": ["benchmark_id", "status"],
+  "properties": {
+    "benchmark_id": {"type": "string"},
+    "status": {"type": "string", "enum": ["ok", "fail"]},
+    "reason": {"type": "string"},
+    "runtime_s": {"type": "number"},
+    "metrics": {"type": "object"}
+  },
+  "additionalProperties": true
+}

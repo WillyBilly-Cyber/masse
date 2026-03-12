@@ -78,6 +78,18 @@ touch .env
 
 **Note:** The system uses OpenAI's GPT-4o model by default. You can modify the LLM provider settings in `masseagents/default_config.py` to use different models or providers.
 
+## Autoresearch Lab (experimental)
+
+This repo includes a deterministic benchmark harness for iterating on MASSE and OpenSees modeling defaults. The harness lives in `tools/autoresearch-lab` and is designed to run a small suite, score results against baselines, and record keep or discard decisions.
+
+Quick start from the repo root:
+
+```bash
+python tools/autoresearch-lab/run_all.py --tag exp1 --description "what changed" --mode auto
+```
+
+See `tools/autoresearch-lab/README.md` for details on specs, gates, and outputs.
+
 ## MASSE Package
 
 ### Implementation Details

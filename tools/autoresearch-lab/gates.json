@@ -1,0 +1,38 @@
+{
+  "version": "0.1",
+  "description": "Accuracy/stability gates for auto-keep decisions.",
+  "defaults": {
+    "require_converged": true
+  },
+  "benchmarks": {
+    "B1_drift_pdelta_2d_moment_frame": {
+      "max_rel_error": {
+        "roof_drift": 0.02,
+        "base_shear": 0.02
+      }
+    },
+    "B2_modal_periods_2d_frame": {
+      "max_rel_error": {
+        "T1": 0.02,
+        "T2": 0.02,
+        "T3": 0.02
+      }
+    },
+    "B3R_diaphragm_rigid_torsion_3d": {
+      "max_rel_error": {
+        "drift_node11": 0.05,
+        "drift_node12": 0.05,
+        "drift_node13": 0.05,
+        "rotation": 0.10
+      }
+    },
+    "B3S_diaphragm_semirigid_membrane_3d": {
+      "max_rel_error": {
+        "drift_node11": 0.10,
+        "drift_node12": 0.10,
+        "drift_node13": 0.10,
+        "rotation": 0.20
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "created": "2026-03-11T11:55:53-05:00",
+  "source_run": "20260311_115553_baseline_b3s_shell_k1",
+  "benchmark": "B3S_diaphragm_semirigid_membrane_3d",
+  "model": "ShellMITC4+PlateFiber (membrane constrained)",
+  "metrics": {
+    "drift_node11": 0.00011614642779947958,
+    "drift_node12": 0.00040557014867865224,
+    "drift_node13": 7.545850223627956e-05,
+    "rotation": 4.126395580529659e-06
+  }
+}
