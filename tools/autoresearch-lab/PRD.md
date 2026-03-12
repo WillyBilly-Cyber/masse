@@ -169,9 +169,9 @@ Later upgrade: SQLite/DuckDB.
 ## 12) Open questions (to resolve early)
 1) Do we store benchmark references as MASSE outputs, pure OpenSees, or both?
 2) What is the first guardrail: runtime cap, stability cap, or accuracy band?
-3) Where do we want this to live: as an OpenClaw Skill, or as a project folder that later becomes a skill?
+3) Where do we want this to live: as a repo tool, or as a `skills/` package that can be run like a first-class workflow?
 
 ## 13) Recommendation: where to put this
 **Current:** `tools/autoresearch-lab/` (repo path).
 
-**Next (optional):** promote to `~/.openclaw/skills/masse-autoresearch-lab/` once the interface is stable and we want to call it as a first-class OpenClaw skill.
+**Next (optional):** promote to `skills/masse-autoresearch-lab/` once the interface is stable and we want to run it as a first-class workflow.

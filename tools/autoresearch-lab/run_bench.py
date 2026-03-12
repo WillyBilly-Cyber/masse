@@ -7,7 +7,7 @@ Reads:
 - masse_study_spec.json (editable surface, only file Experimenter should change)
 
 Runs:
-- MASSE headless CLI via the existing OpenClaw MASSE skill runner script.
+- MASSE headless runner using the Python env you point at (MASSE_VENV_PY / MASSE_PYTHON).
 
 Writes:
 - runs/<timestamp>_<slug>/... artifacts per benchmark case
