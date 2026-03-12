@@ -1,6 +1,11 @@
-# MASSE Autoresearch Lab (Gen 1)
+# Tools: Autoresearch Lab (experimental, Gen 1)
 
 A small, deterministic benchmark harness that lets us iteratively improve MASSE/OpenSees modeling defaults.
+
+## Direction (where this is going)
+- Gen 1 (current): deterministic harness (run → score → decision → ledger)
+- Gen 2: proposal interface + constrained editable spec, still gated by this harness
+- Gen 3: optional distributed runs / queue integration
 
 ## What you edit (the one knob file)
 - `masse_study_spec.json` (authoritative)
